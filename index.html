@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danube Dreams Travels | Budapest</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Montserrat,Arial,sans-serif;
+  background:#080506;
+  color:#fff;
+  min-height:100vh;
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:35px 20px;
+  background:
+    linear-gradient(rgba(20,0,5,.55),rgba(5,0,2,.95)),
+    url("https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=1600&q=85")
+    center/cover;
+  position:relative;
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(130,0,20,.25),transparent 55%);
+  pointer-events:none;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:800px;
+}
+
+.brand{
+  letter-spacing:4px;
+  font-size:13px;
+  font-weight:700;
+  color:#e5c27b;
+  margin-bottom:25px;
+}
+
+h1{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(58px,14vw,110px);
+  line-height:.85;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+.subtitle{
+  font-size:14px;
+  letter-spacing:3px;
+  color:#eee;
+  margin-bottom:35px;
+}
+
+.btn{
+  border:none;
+  padding:16px 30px;
+  border-radius:40px;
+  background:linear-gradient(135deg,#d7af61,#f1d38f);
+  color:#160b0b;
+  font-weight:700;
+  letter-spacing:1px;
+  cursor:pointer;
+  font-size:13px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.section{
+  padding:70px 20px;
+  max-width:1050px;
+  margin:auto;
+}
+
+.section-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:48px;
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.section-subtitle{
+  text-align:center;
+  color:#aaa;
+  margin-bottom:40px;
+  font-size:13px;
+}
+
+.packages{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.package{
+  background:linear-gradient(145deg,#1b0b0e,#0d0809);
+  border:1px solid rgba(214,172,91,.3);
+  border-radius:22px;
+  padding:28px;
+  transition:.3s;
+}
+
+.package:hover{
+  transform:translateY(-5px);
+  border-color:#d6ac5b;
+}
+
+.package h3{
+  font-family:"Cormorant Garamond",serif;
+  font-size:30px;
+  color:#e6c37b;
+  margin-bottom:8px;
+}
+
+.price{
+  font-size:25px;
+  font-weight:700;
+  margin:15px 0;
+}
+
+.package p{
+  color:#aaa;
+  font-size:13px;
+  line-height:1.7;
+  margin-bottom:20px;
+}
+
+.package ul{
+  list-style:none;
+  color:#ddd;
+  font-size:12px;
+  line-height:2;
+  margin-bottom:25px;
+}
+
+.package li:before{
+  content:"✦ ";
+  color:#d6ac5b;
+}
+
+.form-box{
+  max-width:650px;
+  margin:auto;
+  background:linear-gradient(145deg,#18090c,#0d0708);
+  border:1px solid rgba(214,172,91,.3);
+  border-radius:25px;
+  padding:30px;
+}
+
+label{
+  display:block;
+  font-size:12px;
+  color:#bbb;
+  margin:17px 0 7px;
+}
+
+input,select{
+  width:100%;
+  padding:14px;
+  background:#080506;
+  color:#fff;
+  border:1px solid #442126;
+  border-radius:10px;
+  outline:none;
+  font-family:inherit;
+}
+
+input:focus,select:focus{
+  border-color:#d6ac5b;
+}
+
+.confirm{
+  width:100%;
+  margin-top:25px;
+}
+
+#ticketSection{
+  display:none;
+}
+
+.ticket{
+  max-width:700px;
+  margin:25px auto;
+  background:
+    linear-gradient(135deg,rgba(90,0,15,.92),rgba(20,8,10,.97));
+  border:2px solid #d6ac5b;
+  border-radius:25px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+
+.ticket-top{
+  padding:25px;
+  border-bottom:1px dashed rgba(214,172,91,.6);
+}
+
+.ticket-brand{
+  color:#e5c27b;
+  letter-spacing:3px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.ticket-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:38px;
+  margin-top:12px;
+}
+
+.ticket-body{
+  padding:25px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.detail span{
+  display:block;
+  color:#aaa;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:5px;
+}
+
+.detail strong{
+  font-size:14px;
+}
+
+.ticket-bottom{
+  padding:25px;
+  text-align:center;
+  border-top:1px dashed rgba(214,172,91,.6);
+}
+
+.see-you{
+  font-family:"Cormorant Garamond",serif;
+  font-size:34px;
+  line-height:.95;
+  color:#e6c37b;
+  margin:10px 0;
+}
+
+.booking-id{
+  font-size:10px;
+  color:#999;
+  letter-spacing:2px;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+.secondary{
+  background:transparent;
+  color:#e6c37b;
+  border:1px solid #d6ac5b;
+}
+
+footer{
+  text-align:center;
+  padding:40px 20px;
+  color:#666;
+  font-size:11px;
+}
+
+@media(max-width:750px){
+  .packages{
+    grid-template-columns:1fr;
+  }
+
+  .section{
+    padding:55px 16px;
+  }
+
+  .ticket-body{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .form-box{
+    padding:22px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="brand">DANUBE DREAMS TRAVELS</div>
+    <h1>Budapest</h1>
+    <div class="subtitle">THE PEARL OF THE DANUBE · 5 DAYS / 4 NIGHTS</div>
+    <button class="btn" onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'})">
+      PLAN YOUR JOURNEY
+    </button>
+  </div>
+</section>
+
+<section class="section" id="packages">
+  <div class="section-title">Choose Your Journey</div>
+  <div class="section-subtitle">
+    Discover Budapest your way
+  </div>
+
+  <div class="packages">
+
+    <div class="package">
+      <h3>Explorer</h3>
+      <div class="price">₹49,999</div>
+      <p>A memorable Budapest experience covering the city's iconic highlights.</p>
+      <ul>
+        <li>3-Star Central Hotel</li>
+        <li>Airport Transfers</li>
+        <li>City Highlights</li>
+        <li>Danube Experience</li>
+      </ul>
+      <button class="btn" onclick="selectPackage('Explorer')">SELECT</button>
+    </div>
+
+    <div class="package">
+      <h3>Premium</h3>
+      <div class="price">₹69,999</div>
+      <p>A refined experience combining culture, comfort and unforgettable moments.</p>
+      <ul>
+        <li>4-Star Hotel</li>
+        <li>Airport Transfers</li>
+        <li>Guided Experiences</li>
+        <li>Thermal Bath Experience</li>
+      </ul>
+      <button class="btn" onclick="selectPackage('Premium')">SELECT</button>
+    </div>
+
+    <div class="package">
+      <h3>Luxury</h3>
+      <div class="price">₹99,999</div>
+      <p>The ultimate Budapest escape with premium accommodation and experiences.</p>
+      <ul>
+        <li>5-Star Riverside Hotel</li>
+        <li>Private Transfers</li>
+        <li>Premium Experiences</li>
+        <li>Exclusive Dining</li>
+      </ul>
+      <button class="btn" onclick="selectPackage('Luxury')">SELECT</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="booking">
+  <div class="section-title">Plan Your Journey</div>
+  <div class="section-subtitle">
+    Select your dates and tell us who's travelling
+  </div>
+
+  <div class="form-box">
+
+    <label>Selected Package</label>
+    <select id="package">
+      <option value="Explorer">Explorer</option>
+      <option value="Premium">Premium</option>
+      <option value="Luxury">Luxury</option>
+    </select>
+
+    <label>Travel Date</label>
+    <input type="date" id="date">
+
+    <label>Full Name</label>
+    <input type="text" id="name" placeholder="Enter your full name">
+
+    <label>Number of Travellers</label>
+    <input type="number" id="travellers" min="1" max="20" value="1">
+
+    <label>Email</label>
+    <input type="email" id="email" placeholder="Enter your email">
+
+    <button class="btn confirm" onclick="confirmJourney()">
+      CONFIRM JOURNEY
+    </button>
+
+  </div>
+</section>
+
+<section class="section" id="ticketSection">
+
+  <div class="section-title">Journey Confirmed</div>
+  <div class="section-subtitle">Your travel ticket is ready</div>
+
+  <div class="ticket" id="ticket">
+
+    <div class="ticket-top">
+      <div class="ticket-brand">DANUBE DREAMS TRAVELS</div>
+      <div class="ticket-title">YOUR JOURNEY AWAITS</div>
+    </div>
+
+    <div class="ticket-body">
+
+      <div class="detail">
+        <span>Guest</span>
+        <strong id="ticketName"></strong>
+      </div>
+
+      <div class="detail">
+        <span>Package</span>
+        <strong id="ticketPackage"></strong>
+      </div>
+
+      <div class="detail">
+        <span>Travel Date</span>
+        <strong id="ticketDate"></strong>
+      </div>
+
+      <div class="detail">
+        <span>Travellers</span>
+        <strong id="ticketTravellers"></strong>
+      </div>
+
+    </div>
+
+    <div class="ticket-bottom">
+      <div class="booking-id" id="bookingId"></div>
+
+      <div class="see-you">
+        SEE YOU IN<br>
+        CONSTANTIA<br>
+        2027–2028
+      </div>
+    </div>
+
+  </div>
+
+  <div class="actions">
+    <button class="btn" onclick="downloadTicket()">
+      DOWNLOAD TICKET
+    </button>
+
+    <button class="btn secondary" onclick="location.reload()">
+      BOOK ANOTHER JOURNEY
+    </button>
+  </div>
+
+</section>
+
+<footer>
+  DANUBE DREAMS TRAVELS · BUDAPEST
+</footer>
+
+<script>
+
+function selectPackage(packageName){
+  document.getElementById("package").value = packageName;
+
+  document.getElementById("booking").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+function confirmJourney(){
+
+  const name = document.getElementById("name").value.trim();
+  const date = document.getElementById("date").value;
+  const travellers = document.getElementById("travellers").value;
+  const email = document.getElementById("email").value.trim();
+  const packageName = document.getElementById("package").value;
+
+  if(!name || !date || !email){
+    alert("Please complete all required details.");
+    return;
+  }
+
+  const selectedDate = new Date(date + "T00:00:00");
+
+  const formattedDate = selectedDate.toLocaleDateString("en-IN",{
+    day:"2-digit",
+    month:"short",
+    year:"numeric"
+  });
+
+  const bookingNumber =
+    "DDT-" +
+    Math.floor(100000 + Math.random() * 900000);
+
+  document.getElementById("ticketName").textContent = name;
+  document.getElementById("ticketPackage").textContent = packageName;
+  document.getElementById("ticketDate").textContent = formattedDate;
+  document.getElementById("ticketTravellers").textContent = travellers;
+  document.getElementById("bookingId").textContent =
+    "BOOKING ID · " + bookingNumber;
+
+  document.getElementById("ticketSection").style.display = "block";
+
+  document.getElementById("ticketSection").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+function downloadTicket(){
+
+  const ticket = document.getElementById("ticket");
+
+  const canvas = document.createElement("canvas");
+  const scale = 2;
+
+  canvas.width = ticket.offsetWidth * scale;
+  canvas.height = ticket.offsetHeight * scale;
+
+  const ctx = canvas.getContext("2d");
+  ctx.scale(scale,scale);
+
+  ctx.fillStyle = "#17080b";
+  ctx.fillRect(0,0,ticket.offsetWidth,ticket.offsetHeight);
+
+  ctx.fillStyle = "#e6c37b";
+  ctx.font = "bold 16px Arial";
+  ctx.fillText(
+    "DANUBE DREAMS TRAVELS",
+    25,
+    35
+  );
+
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 28px Georgia";
+  ctx.fillText(
+    "YOUR JOURNEY AWAITS",
+    25,
+    75
+  );
+
+  ctx.strokeStyle = "#d6ac5b";
+  ctx.strokeRect(
+    2,
+    2,
+    ticket.offsetWidth-4,
+    ticket.offsetHeight-4
+  );
+
+  ctx.font = "13px Arial";
+
+  ctx.fillStyle = "#aaaaaa";
+  ctx.fillText("GUEST",25,125);
+  ctx.fillText("PACKAGE",350,125);
+
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 15px Arial";
+  ctx.fillText(
+    document.getElementById("ticketName").textContent,
+    25,145
+  );
+
+  ctx.fillText(
+    document.getElementById("ticketPackage").textContent,
+    350,145
+  );
+
+  ctx.fillStyle = "#aaaaaa";
+  ctx.font = "13px Arial";
+  ctx.fillText("TRAVEL DATE",25,185);
+  ctx.fillText("TRAVELLERS",350,185);
+
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 15px Arial";
+  ctx.fillText(
+    document.getElementById("ticketDate").textContent,
+    25,205
+  );
+
+  ctx.fillText(
+    document.getElementById("ticketTravellers").textContent,
+    350,205
+  );
+
+  ctx.fillStyle = "#e6c37b";
+  ctx.font = "bold 27px Georgia";
+  ctx.textAlign = "center";
+
+  ctx.fillText(
+    "SEE YOU IN",
+    ticket.offsetWidth/2,
+    275
+  );
+
+  ctx.fillText(
+    "CONSTANTIA",
+    ticket.offsetWidth/2,
+    310
+  );
+
+  ctx.fillText(
+    "2027–2028",
+    ticket.offsetWidth/2,
+    345
+  );
+
+  ctx.fillStyle = "#888";
+  ctx.font = "10px Arial";
+
+  ctx.fillText(
+    document.getElementById("bookingId").textContent,
+    ticket.offsetWidth/2,
+    ticket.offsetHeight-20
+  );
+
+  ctx.textAlign = "left";
+
+  const link = document.createElement("a");
+
+  link.download = "Danube-Dreams-Ticket.png";
+  link.href = canvas.toDataURL("image/png");
+
+  link.click();
+}
+
+</script>
+
+</body>
+        </html>
